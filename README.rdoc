@@ -1,28 +1,8 @@
-== README
+Agendify
+========
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Agendify is an easy to use agenda for middle school & high school kids.
+Agendify allows you to:
+* Plan & organize your calendar
+* Keep track of your homeworks, exams, and events
+* Organize and manage your contacts
