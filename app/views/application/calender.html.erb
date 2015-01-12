@@ -1,3 +1,19 @@
+<%= javascript_include_tag 'moment.min.js' %>
+<%= javascript_include_tag 'fullcalendar.min.js' %>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+    // page is now ready, initialize the calendar...
+
+    $('#calendar').fullCalendar({
+        dayClick: function(date, jsEvent) {
+        	alert('a day is clicked ' + date.format());
+        	$(this).css('background-color', 'red');
+    	}
+    });
+
+});
+</script>
 <div>
 <h1><%= @message%></h1>
 
