@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'calender'=> 'application#calender'
   get 'contactdirectory'=>'application#contactdirectory'
   post 'post_event'=>'events#post_event'
+  post 'post_contact'=>'contacts#post_contact'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
