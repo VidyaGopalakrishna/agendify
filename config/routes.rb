@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root 'application#index'
   get 'calender'=> 'application#calender'
   get 'contactdirectory'=>'application#contactdirectory'
+  post 'post_event'=>'events#post_event'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
