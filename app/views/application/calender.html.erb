@@ -12,9 +12,17 @@
         	var background_color = "Blue";
         	var event_object = {
         		title: "My Event",
-        		start: my_birthday,
+        		start: date.format(),
         		backgroundColor: background_color
         	};
+
+        	// Send my event to db
+        	$.ajax({
+        		type: "POST",
+        		url: "post_event",
+        		data: event_object
+        	});
+
         	$('#calendar').fullCalendar('renderEvent', event_object);
     	},
 
