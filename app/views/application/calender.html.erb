@@ -6,9 +6,22 @@
     // page is now ready, initialize the calendar...
 
     $('#calendar').fullCalendar({
+    	// Event handler for day clicks
         dayClick: function(date, jsEvent) {
-        	alert('a day is clicked ' + date.format());
-        	$(this).css('background-color', 'red');
+        	var my_birthday = moment(date.format());
+        	var background_color = "Blue";
+        	var event_object = {
+        		title: "My Event",
+        		start: my_birthday,
+        		backgroundColor: background_color
+        	};
+        	$('#calendar').fullCalendar('renderEvent', event_object);
+    	},
+
+    	// Event handler for event clicks
+    	eventClick: function(calEvent, jsEvent, view){
+    		var formattedDate = moment(calEvent.start).format('MM-DD-YYYY');
+    		alert('Event: ' + calEvent.title + "\n" + 'Date: ' + formattedDate + "\n");
     	}
     });
 
