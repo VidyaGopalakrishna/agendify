@@ -30,15 +30,19 @@
 		<i class="fa fa-user"></i> Add A New Contact </button>
 	</div>
 	<div class="col-md-12 contact-list">
-		<table class="table">
-			<% @contacts.each do |contact| %>
-				<tr>
-					<th><h4><%= contact.last_name %>, <%= contact.first_name %></h4></th>
-					<td><a>Phone: <%=contact.phone_number %></a></td>
-					<td><a>Email: <%=contact.email %></a></td>
-				</tr>
-			<% end %>
-		</table>
+		<% if @contacts.size > 0 %>
+			<table class="table">
+				<% @contacts.each do |contact| %>
+					<tr>
+						<th><h4><%= contact.last_name %>, <%= contact.first_name %></h4></th>
+						<td><a>Phone: <%=contact.phone_number %></a></td>
+						<td><a>Email: <%=contact.email %></a></td>
+					</tr>
+				<% end %>
+			</table>
+		<%else%>
+			<h3> Looks like you have not added any contacts yet! </h3>
+		<%end%>
 	</div>
 </div>
 
