@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'application#index'
-  get 'calender'=> 'application#calender'
-  get 'contactdirectory'=>'application#contactdirectory'
+  get 'calendar'=> 'application#calender'
+  get 'contacts'=>'application#contactdirectory'
   post 'post_event'=>'events#post_event'
   post 'post_contact'=>'contacts#post_contact'
 
