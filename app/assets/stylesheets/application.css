@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+.contact-input{
+	margin-bottom: 2%;
+}
+
+.contact-list{
+	margin-top: 2%;
+}
+
+#calendar{
+	margin-bottom: 2%;
+}
