@@ -13,5 +13,6 @@ class ApplicationController < ActionController::Base
 
   def contactdirectory
   	@message = "Contact Directory Page"
+    @contacts = Contact.all
   end
 end
