@@ -7,12 +7,4 @@ class ApplicationController < ActionController::Base
   	@message = "Home Page"
   end
 
-  def calender
-  	@message = "Calender Page"
-  end
-
-  def contactdirectory
-  	@message = "Contact Directory Page"
-    @contacts = Contact.all
-  end
 end

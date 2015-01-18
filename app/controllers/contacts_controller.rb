@@ -1,4 +1,9 @@
 class ContactsController < ActionController::Base
+	before_action :authenticate_agendify_user!
+	
+	def index
+		@page_title = "My Contacts"
+	end
 
 	def post_contact
 		print params
