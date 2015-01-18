@@ -24,3 +24,12 @@
 #calendar{
 	margin-bottom: 2%;
 }
+
+#sign_up_btn{
+	color: white;
+	border-radius: 0px;
+}
+
+#sign_up_btn:hover{
+	background-color: #428bca;
+}

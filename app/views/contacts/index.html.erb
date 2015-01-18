@@ -35,8 +35,8 @@
 				<% @contacts.each do |contact| %>
 					<tr>
 						<th><h4><%= contact.last_name %>, <%= contact.first_name %></h4></th>
-						<td><a>Phone: <%=contact.phone_number %></a></td>
-						<td><a>Email: <%=contact.email %></a></td>
+						<td><h5>Phone:</h5><a><%=contact.phone_number %></a></td>
+						<td><h5>Email:</h5><a><%=contact.email %></a></td>
 					</tr>
 				<% end %>
 			</table>

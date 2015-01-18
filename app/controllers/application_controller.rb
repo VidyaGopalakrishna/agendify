@@ -4,7 +4,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def index
-  	@message = "Home Page"
+    if agendify_user_signed_in?
+      redirect_to '/calendar'
+    else
+      @message = "Home Page"
+    end
+
   end
 
 end
