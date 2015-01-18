@@ -1,4 +1,9 @@
 class EventsController < ActionController::Base
+	before_action :authenticate_agendify_user!
+
+	def calendar
+		@message = "calendar"
+	end
 
 	def post_event
 		event = Event.new
