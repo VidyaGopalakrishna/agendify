@@ -9,12 +9,22 @@
 <body>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-    <div class="navbar-header">
-    	<a class="navbar-brand" href="/">Agendify</a>
-      <ul class="nav navbar-nav">
-        <li><a href="calendar">My Calendar</a></li>
-        <li><a href="contacts">My Contacts</a></li>
-      </ul>
+    <div class="row">
+      <div class="col-md-8 navbar-header">
+      	<a class="navbar-brand" href="/">Agendify</a>
+      </div>
+      <div class="col-md-4 navbar-header">
+            <ul class="nav navbar-nav">
+            <li><%= link_to "My Agenda", "calendar" %></li>
+            <li><%= link_to "My Contacts", "contacts" %></li>
+            <% if agendify_user_signed_in? %>
+              <li><%= link_to "Logout", destroy_agendify_user_session_path, :method => :delete %></li>
+            <% else %>
+              <li><%= link_to "Log In", 'login' %></li>
+              <li><%= link_to "Sign Up", "sign_up", id:"sign_up_btn", class:"btn btn-primary" %></li>
+            <% end %>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>
