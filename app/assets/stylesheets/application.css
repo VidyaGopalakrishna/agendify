@@ -17,6 +17,14 @@
 	margin-bottom: 2%;
 }
 
+.event-input{
+	margin-bottom: 2%;
+}
+
+#event_notes{
+	width: 100%;
+}
+
 .contact-list{
 	margin-top: 2%;
 }

@@ -5,20 +5,24 @@
 
     // page is now ready, initialize the calendar...
 
-    $('#event_adder').click(function(){
-    
-    });
-
     $('#calendar').fullCalendar({
     	// Event handler for day clicks
         dayClick: function(date, jsEvent) {
-        	var my_birthday = moment(date.format());
-        	var background_color = "Blue";
-        	var event_object = {
-        		title: "My Event",
-        		start: date.format(),
-        		backgroundColor: background_color
-        	};
+            var current_date = date.format("dddd, MMMM Do YYYY");
+            var default_message = "Create an event for ";
+            $('#myModal').modal('show');
+            $('#date-message-header').text(default_message + current_date);
+
+            $('#event_adder').click(function(){
+               var event_object = {
+                    title: $('#event_name').val(),
+                    start: date.format(),
+                    notes: $('#event_notes').val(),
+                    backgroundColor: "#5e80bf"
+                };
+                $('#myModal').modal('hide');
+                $('#calendar').fullCalendar('renderEvent', event_object);
+            });
 
         	/*// Send my event to db
         	$.ajax({
@@ -26,14 +30,12 @@
         		url: "post_event",
         		data: event_object
         	});*/
-
-        	$('#calendar').fullCalendar('renderEvent', event_object);
     	},
 
     	// Event handler for event clicks
     	eventClick: function(calEvent, jsEvent, view){
     		var formattedDate = moment(calEvent.start).format('MM-DD-YYYY');
-    		alert('Event: ' + calEvent.title + "\n" + 'Date: ' + formattedDate + "\n");
+    		alert('Event: ' + calEvent.title + "\n" + 'Date: ' + formattedDate + "\n" + 'Notes: ' + calEvent.notes);
     	}
     });
 
@@ -41,10 +43,14 @@
 </script>
 
 <div class="row">
-    <div class="col-md-6 col-md-offset" id='calendar'></div>
-    <div class="col-md-3 col-md-offset-2">
-        <button id="event_adder" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-calendar calendar-icon"></i> Add a new event</button>
-        <table class="table upcoming" style="width:100%;height:200px;border:2px solid black;margin-top:5%">
+    <div class="col-md-7" id='calendar'></div>
+    <div class="col-md-3 col-md-offset-1">
+        <div class="supporting_tips">
+            <h4><i class="fa fa-lightbulb-o fa-lg"></i> Quick Tip:</h4>
+            <span>Click on a day to create a new event </span>
+        </div>
+        <hr/>
+        <table class="table upcoming" style="width:100%;height:200px;border:2px solid black">
             <th>
                 Upcoming tasks
             </th>
@@ -52,5 +58,33 @@
     </div>
 </div>
 
-<%= render 'event_modal' %>
-<h4 class="modal-title"> Create A New Contact </h4>
+<div id="myModal" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="contact-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"> Add A New Event </h4>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div id="date-message" class="col-md-12">
+                            <h5 style="font-weight:bold" id="date-message-header"></h5>
+                        </div>
+                        <div class="event-input input-group col-md-12">
+                            <input type="text" class="form-control" placeholder="Event Name" id="event_name"/>
+                        </div>
+                        <div class="event-input input-group col-md-12">
+                            <textarea id="event_notes" rows=5 placeholder=" Enter some notes"></textarea>
+                        </div>
+                        <div class="event-input input-group col-md-12">
+                            <button id="event_adder" class="btn btn-primary">Create Event</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
