@@ -27,9 +27,26 @@
         });
                 
         $('#calendar').fullCalendar({
-
             // Load data from rails
-
+            events: function(start, end, timezone, callback){
+                $.ajax({
+                    url: 'events',
+                    dataType: 'json',
+                    success: function(event_objs){
+                        var res = [];
+                        // For each event of this user, render it to the main calendar
+                        $.each(event_objs, function(idx, obj){
+                            res.push({
+                                title: obj.title,
+                                start: obj.start,
+                                backgroundColor: obj.backgroundColor,
+                                notes: obj.event_notes
+                            });
+                        });
+                        callback(res);
+                    }
+                });
+            },
 
         	// Event handler for day clicks
             dayClick: function(date, jsEvent) {

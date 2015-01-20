@@ -7,13 +7,19 @@ class EventsController < ActionController::Base
 
 	def post_event
 		event = Event.new
-		event.event_name = params[:title]
-		event.event_date = params[:start]
+		event.title = params[:title]
+		event.start = params[:start]
 		event.event_notes = params[:notes]
+		event.backgroundColor = params[:backgroundColor]
 		event.save
 		current_agendify_user.events.push(event)
 		current_agendify_user.save
 		redirect_to root_path
+	end
+
+	def get_events
+		@events = current_agendify_user.events
+		render json: @events
 	end
 
 end

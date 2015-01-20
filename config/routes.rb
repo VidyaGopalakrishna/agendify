@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get 'contacts'=>'contacts#index'
   post 'post_event'=>'events#post_event'
   post 'post_contact'=>'contacts#post_contact'
+
+  get 'events' => 'events#get_events'
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
