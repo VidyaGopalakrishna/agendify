@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150120034907) do
+ActiveRecord::Schema.define(version: 20150120042801) do
 
   create_table "agendify_users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20150120034907) do
     t.datetime "updated_at",       null: false
     t.text     "event_notes"
     t.integer  "agendify_user_id"
-    t.string   "backgrounColor"
+    t.string   "event_color"
   end
 
 end

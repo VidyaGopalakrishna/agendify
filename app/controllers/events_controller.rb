@@ -1,3 +1,4 @@
+require 'date'
 class EventsController < ActionController::Base
 	before_action :authenticate_agendify_user!
 
@@ -10,7 +11,7 @@ class EventsController < ActionController::Base
 		event.title = params[:title]
 		event.start = params[:start]
 		event.event_notes = params[:notes]
-		event.backgroundColor = params[:backgroundColor]
+		event.event_color = params[:backgroundColor]
 		event.save
 		current_agendify_user.events.push(event)
 		current_agendify_user.save

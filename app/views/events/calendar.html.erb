@@ -3,27 +3,37 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-
+        var savedEventData = false;
+        
         // Handle data when pop up window is closed
         $('#event_modal').on('hidden.bs.modal', function(event){
-            var event_object = {
-                title: $('#event_name').val(),
-                start: $('#date-message-header').text(),
-                notes: $('#event_notes').val(),
-                backgroundColor: "#5e80bf"
-            };
-            // Reset pop form values
-            $('#event_name').val('').end();
-            $('#event_notes').val('').end();
-            $('#date-message-header').val('').end();
-            $('#calendar').fullCalendar('renderEvent', event_object);
+            // Check if create event button was clicked
+            if(savedEventData){
+                // Only save data if create event button was clicked
+                var event_object = {
+                    title: $('#event_name').val(),
+                    start: $('#date-message-header').text(),
+                    notes: $('#event_notes').val(),
+                    backgroundColor: "#5e80bf"
+                };
+                // Reset pop form values
+                $('#event_name').val('').end();
+                $('#event_notes').val('').end();
+                $('#date-message-header').val('').end();
+                $('#calendar').fullCalendar('renderEvent', event_object);
 
-            // Make AJAX call to post data to rails
-            $.ajax({
-                type: "POST",
-                url: "post_event",
-                data: event_object
-            });
+                // Make AJAX call to post data to rails
+                $.ajax({
+                    type: "POST",
+                    url: "post_event",
+                    data: event_object
+                });
+            }
+        });
+
+        $('#event_adder').click(function(){
+            savedEventData = true;
+            $('#event_modal').modal('hide');
         });
                 
         $('#calendar').fullCalendar({
@@ -39,7 +49,7 @@
                             res.push({
                                 title: obj.title,
                                 start: obj.start,
-                                backgroundColor: obj.backgroundColor,
+                                backgroundColor: obj.event_color,
                                 notes: obj.event_notes
                             });
                         });
