@@ -1,45 +1,50 @@
 <%= javascript_include_tag 'moment.min.js' %>
 <%= javascript_include_tag 'fullcalendar.min.js' %>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 
-    // page is now ready, initialize the calendar...
+        // Handle data when pop up window is closed
+        $('#event_modal').on('hidden.bs.modal', function(event){
+            var event_object = {
+                title: $('#event_name').val(),
+                start: $('#date-message-header').text(),
+                notes: $('#event_notes').val(),
+                backgroundColor: "#5e80bf"
+            };
+            // Reset pop form values
+            $('#event_name').val('').end();
+            $('#event_notes').val('').end();
+            $('#date-message-header').val('').end();
+            $('#calendar').fullCalendar('renderEvent', event_object);
 
-    $('#calendar').fullCalendar({
-    	// Event handler for day clicks
-        dayClick: function(date, jsEvent) {
-            var current_date = date.format("dddd, MMMM Do YYYY");
-            var default_message = "Create an event for ";
-            $('#myModal').modal('show');
-            $('#date-message-header').text(default_message + current_date);
-
-            $('#event_adder').click(function(){
-               var event_object = {
-                    title: $('#event_name').val(),
-                    start: date.format(),
-                    notes: $('#event_notes').val(),
-                    backgroundColor: "#5e80bf"
-                };
-                $('#myModal').modal('hide');
-                $('#calendar').fullCalendar('renderEvent', event_object);
+            // Make AJAX call to post data to rails
+            $.ajax({
+                type: "POST",
+                url: "post_event",
+                data: event_object
             });
+        });
+                
+        $('#calendar').fullCalendar({
 
-        	/*// Send my event to db
-        	$.ajax({
-        		type: "POST",
-        		url: "post_event",
-        		data: event_object
-        	});*/
-    	},
+            // Load data from rails
 
-    	// Event handler for event clicks
-    	eventClick: function(calEvent, jsEvent, view){
-    		var formattedDate = moment(calEvent.start).format('MM-DD-YYYY');
-    		alert('Event: ' + calEvent.title + "\n" + 'Date: ' + formattedDate + "\n" + 'Notes: ' + calEvent.notes);
-    	}
+
+        	// Event handler for day clicks
+            dayClick: function(date, jsEvent) {
+                $('#event_modal').modal('show');
+                $('#date-message-header').text(date.format());
+        	},
+
+        	// Event handler for event clicks
+        	eventClick: function(calEvent, jsEvent, view){
+        		var formattedDate = moment(calEvent.start).format('MM-DD-YYYY');
+        		alert('Event: ' + calEvent.title + "\n" + 'Date: ' + formattedDate + "\n" + 'Notes: ' + calEvent.notes);
+        	}
+        });
+
     });
-
-});
 </script>
 
 <div class="row">
@@ -58,33 +63,5 @@
     </div>
 </div>
 
-<div id="myModal" class="modal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="contact-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title"> Add A New Event </h4>
-                </div>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <div id="date-message" class="col-md-12">
-                            <h5 style="font-weight:bold" id="date-message-header"></h5>
-                        </div>
-                        <div class="event-input input-group col-md-12">
-                            <input type="text" class="form-control" placeholder="Event Name" id="event_name"/>
-                        </div>
-                        <div class="event-input input-group col-md-12">
-                            <textarea id="event_notes" rows=5 placeholder=" Enter some notes"></textarea>
-                        </div>
-                        <div class="event-input input-group col-md-12">
-                            <button id="event_adder" class="btn btn-primary">Create Event</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- Render Pop up window -->
+<%= render 'event_modal' %>

@@ -1,32 +1,30 @@
-<div id="myModal" class="modal">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<div class="contact-header">
-					<h4 class="modal-title"> Add A New Event </h4>
-				</div>
-			</div>
-			<div class="modal-body">
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2">
-						<div class="contact-input input-group col-md-12">
-							<input type="text" class="form-control" placeholder="First Name" name="first_name" id="first_name"/>
-						</div>
-						<div class="contact-input input-group col-md-12">
-							<input type="text" class="form-control" placeholder="Last Name" name="last_name" id="last_name"/>
-						</div>
-						<div class="contact-input input-group col-md-12">
-							<input type="email" class="form-control" placeholder="Email" name="email" id="email"/>
-						</div>
-						<div class="contact-input input-group col-md-12">
-							<input type="text" class="form-control" placeholder="Phone Number" name="phone_number" id="phone_number"/>
-						</div>
-						<div class="contact-input input-group col-md-12">
-							<button id="contact_adder" class="btn btn-primary">Add to contacts</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<div id="event_modal" class="modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="event-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"> Add A New Event </h4>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div id="date-message" class="col-md-12">
+                           Add an event for <span style="font-weight:bold" id="date-message-header"></span>
+                        </div>
+                        <div class="event-input input-group col-md-12">
+                            <input type="text" class="form-control" placeholder="Event Name" id="event_name"/>
+                        </div>
+                        <div class="event-input input-group col-md-12">
+                            <textarea id="event_notes" rows=5 placeholder=" Enter some notes"></textarea>
+                        </div>
+                        <div class="event-input input-group col-md-12">
+                            <button id="event_adder" class="btn btn-primary" data-dismiss="modal" data-btn-name="mybtn">Create Event</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

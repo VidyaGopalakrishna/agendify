@@ -9,7 +9,10 @@ class EventsController < ActionController::Base
 		event = Event.new
 		event.event_name = params[:title]
 		event.event_date = params[:start]
+		event.event_notes = params[:notes]
 		event.save
+		current_agendify_user.events.push(event)
+		current_agendify_user.save
 		redirect_to root_path
 	end
 
