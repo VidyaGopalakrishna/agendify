@@ -4,6 +4,7 @@ class EventsController < ActionController::Base
 
 	def calendar
 		@message = "calendar"
+		@events = current_agendify_user.events
 	end
 
 	def post_event
