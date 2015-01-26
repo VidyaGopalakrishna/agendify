@@ -41,3 +41,10 @@
 #sign_up_btn:hover{
 	background-color: #428bca;
 }
+
+body{
+	background-color:#FFFACD;
+}
+.navbar-default {
+	background-color:#F5DEB3;
+}
