@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
     else
       @message = "Home Page"
     end
-
   end
 
 end
