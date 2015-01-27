@@ -48,3 +48,9 @@ body{
 .navbar-default {
 	background-color:#F5DEB3;
 }
+.modal-body {
+	background-color:#FFF0F5;
+}
+.modal-header {
+	background-color:#CC99FF;
+}
