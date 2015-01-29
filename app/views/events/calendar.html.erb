@@ -60,6 +60,8 @@
 
         	// Event handler for day clicks
             dayClick: function(date, jsEvent) {
+                $('#event_name').val('');
+                $('#event_notes').val('');
                 $('#event_modal').modal('show');
                 $('#date-message-header').text(date.format());
         	},
