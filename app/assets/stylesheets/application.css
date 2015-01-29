@@ -17,6 +17,14 @@
 	margin-bottom: 2%;
 }
 
+.event-input{
+	margin-bottom: 2%;
+}
+
+#event_notes{
+	width: 100%;
+}
+
 .contact-list{
 	margin-top: 2%;
 }
@@ -32,4 +40,11 @@
 
 #sign_up_btn:hover{
 	background-color: #428bca;
+}
+
+body{
+	background-color:#FFFACD;
+}
+.navbar-default {
+	background-color:#F5DEB3;
 }

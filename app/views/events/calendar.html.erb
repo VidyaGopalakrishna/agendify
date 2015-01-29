@@ -1,0 +1,100 @@
+<%= javascript_include_tag 'moment.min.js' %>
+<%= javascript_include_tag 'fullcalendar.min.js' %>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+        var savedEventData = false;
+
+        // Handle data when pop up window is closed
+        $('#event_modal').on('hidden.bs.modal', function(event){
+            // Check if create event button was clicked
+            if(savedEventData){
+                // Only save data if create event button was clicked
+                var event_object = {
+                    title: $('#event_name').val(),
+                    start: $('#date-message-header').text(),
+                    notes: $('#event_notes').val(),
+                    backgroundColor: "#5e80bf"
+                };
+                // Reset pop form values
+                $('#event_name').val('').end();
+                $('#event_notes').val('').end();
+                $('#date-message-header').val('').end();
+                $('#calendar').fullCalendar('renderEvent', event_object);
+
+                // Make AJAX call to post data to rails
+                $.ajax({
+                    type: "POST",
+                    url: "post_event",
+                    data: event_object
+                });
+            }
+        });
+
+        $('#event_adder').click(function(){
+            savedEventData = true;
+            $('#event_modal').modal('hide');
+        });
+                
+        $('#calendar').fullCalendar({
+            // Load data from rails
+            events: function(start, end, timezone, callback){
+                $.ajax({
+                    url: 'events',
+                    dataType: 'json',
+                    success: function(event_objs){
+                        var res = [];
+                        // For each event of this user, render it to the main calendar
+                        $.each(event_objs, function(idx, obj){
+                            res.push({
+                                title: obj.title,
+                                start: obj.start,
+                                backgroundColor: obj.event_color,
+                                notes: obj.event_notes
+                            });
+                        });
+                        callback(res);
+                    }
+                });
+            },
+
+        	// Event handler for day clicks
+            dayClick: function(date, jsEvent) {
+                $('#event_modal').modal('show');
+                $('#date-message-header').text(date.format());
+        	},
+
+        	// Event handler for event clicks
+        	eventClick: function(calEvent, jsEvent, view){
+        		var formattedDate = moment(calEvent.start).format('MM-DD-YYYY');
+        		alert('Event: ' + calEvent.title + "\n" + 'Date: ' + formattedDate + "\n" + 'Notes: ' + calEvent.notes);
+        	}
+        });
+
+    });
+</script>
+
+<div class="row">
+    <div class="col-md-7" id='calendar'></div>
+    <div class="col-md-3 col-md-offset-1">
+        <div class="alert alert-warning supporting_tips">
+            <h4><i class="fa fa-lightbulb-o fa-lg"></i> Quick Tip:</h4>
+            <span>Click on a day to create a new event </span>
+        </div>
+
+        <div class="upcoming-events" style="margin-top:5%">
+            <h4> Upcoming Events </h4>
+            <table class="table upcoming">
+                <% @events.each do |event| %>
+                    <tr>
+                        <td><%= event.start.strftime("%m/%d/%Y") %></td>
+                        <td><%= event.title %></td>
+                    </tr>
+                <% end %>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Render Pop up window -->
+<%= render 'event_modal' %>
