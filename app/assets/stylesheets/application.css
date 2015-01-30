@@ -64,10 +64,14 @@ body{
 }
 
 .descriptive-row{
-	margin-top: 2.5%;
+	font-family: dhyana, sans-serif;
 }
 
 .navbar-brand{
 	font-family: allan, sans-serif;
 	font-size: 2em;
+}
+
+.descriptive-panel{
+	margin-top: 2.5%;
 }
