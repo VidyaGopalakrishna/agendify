@@ -75,3 +75,18 @@ body{
 .descriptive-panel{
 	margin-top: 2.5%;
 }
+
+.footer-content{
+	margin-top: 0.5%;
+}
+
+.footer-signature{
+	font-family: dhyana, sans-serif;
+}
+
+#rails-logo{
+	margin-left: 1%;
+	margin-top: 0.25%;
+	height: 30px;
+	width: 30px;
+}
