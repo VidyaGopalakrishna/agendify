@@ -71,8 +71,10 @@
         	// Event handler for event clicks
         	eventClick: function(calEvent, jsEvent, view){
                 $('#event_display_modal').modal('show');
-        		//var formattedDate = moment(calEvent.start).format('MM-DD-YYYY');
-        		//alert('Event: ' + calEvent.title + "\n" + 'Date: ' + formattedDate + "\n" + 'Notes: ' + calEvent.notes);
+                // Set the event name, type, and notes to the pop-up
+                $('#event_display_name').text(calEvent.title);
+                $('#event_display_date').text(calEvent.start.format('MM-DD-YYYY'));
+                $('#event_display_notes').text(calEvent.notes);
         	}
         });
 

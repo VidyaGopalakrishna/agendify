@@ -31,7 +31,7 @@
 	</div>
 	<div class="col-md-12 contact-list">
 		<% if @contacts.size > 0 %>
-			<table class="table">
+			<table class="table table-striped">
 				<% @contacts.each do |contact| %>
 					<tr>
 						<th><h4><%= contact.last_name %>, <%= contact.first_name %></h4></th>

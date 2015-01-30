@@ -90,3 +90,56 @@ body{
 	height: 30px;
 	width: 30px;
 }
+
+.event-display-input{
+	margin-bottom: 2%;
+}
+
+#event_display_name{
+	margin-left: 2%;
+}
+
+#event_display_date{
+	margin-left: 2%;
+}
+
+.modal-header{
+	background-color: #F5DEB3;	
+}
+
+.modal{
+	font-family: dhyana, sans-serif;	
+}
+
+.modal-body{
+	background-color: #FFFACD;
+}
+
+.navbar-nav{
+	font-family: dhyana, sans-serif;	
+}
+
+.upcoming-events{
+	font-family: dhyana, sans-serif;
+}
+
+.supporting_tips{
+	font-family: dhyana, sans-serif;
+}
+
+#calendar{
+	font-family: dhyana, sans-serif;
+}
+
+.fc-day-grid-event{
+	height: 25px;
+	font-size: 11px;
+}
+
+.sign-up-form{
+	font-family: dhyana, sans-serif;
+}
+
+.login-form{
+	font-family: dhyana, sans-serif;
+}
