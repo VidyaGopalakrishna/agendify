@@ -48,3 +48,26 @@ body{
 .navbar-default {
 	background-color:#F5DEB3;
 }
+
+#main-header{
+	font-family: allan, sans-serif;
+	font-size: 5em;
+}
+
+.banner{
+	text-align: center;
+}
+
+#main-sub-header{
+	font-family: dhyana, sans-serif;
+	font-size: 2em;
+}
+
+.descriptive-row{
+	margin-top: 2.5%;
+}
+
+.navbar-brand{
+	font-family: allan, sans-serif;
+	font-size: 2em;
+}
