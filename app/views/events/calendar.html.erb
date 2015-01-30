@@ -10,11 +10,13 @@
             // Check if create event button was clicked
             if(savedEventData){
                 // Only save data if create event button was clicked
+                var class_name = $('#event_type').find('option:selected').attr('class').split(' ')[1];
+                var bg_color = $('.'+class_name).css('background-color');
                 var event_object = {
                     title: $('#event_name').val(),
                     start: $('#date-message-header').text(),
                     notes: $('#event_notes').val(),
-                    backgroundColor: "#5e80bf"
+                    backgroundColor: bg_color
                 };
                 // Reset pop form values
                 $('#event_name').val('').end();
@@ -60,6 +62,8 @@
 
         	// Event handler for day clicks
             dayClick: function(date, jsEvent) {
+                $('#event_name').val('').end();
+                $('#event_notes').val('').end();
                 $('#event_modal').modal('show');
                 $('#date-message-header').text(date.format());
         	},
