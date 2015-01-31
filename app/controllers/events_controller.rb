@@ -4,7 +4,7 @@ class EventsController < ActionController::Base
 
 	def calendar
 		@message = "calendar"
-		@events = current_agendify_user.events
+		@events = current_agendify_user.events.order('start asc')
 	end
 
 	def post_event
